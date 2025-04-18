@@ -1,0 +1,2 @@
+BUILD\DISCO_L475VG_IOT01A\ARMC6\View\News.o: View\News.cpp \
+  BUILD\DISCO_L475VG_IOT01A\ARMC6\mbed_config.h

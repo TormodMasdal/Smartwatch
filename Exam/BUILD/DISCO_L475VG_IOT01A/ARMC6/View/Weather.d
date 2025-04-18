@@ -1,0 +1,2 @@
+BUILD\DISCO_L475VG_IOT01A\ARMC6\View\Weather.o: View\Weather.cpp \
+  BUILD\DISCO_L475VG_IOT01A\ARMC6\mbed_config.h
