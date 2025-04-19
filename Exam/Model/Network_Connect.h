@@ -11,7 +11,9 @@ class Network_Connect{
     
 public: 
     NetworkInterface* Connect();
+    std::string FetchPublicIP();
 };
 
 
 #endif
+

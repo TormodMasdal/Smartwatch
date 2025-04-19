@@ -2,6 +2,7 @@
 #include "mbed.h"
 
 // PARAMETERS: WEBSITE NAME, CERTIFICATE
+
 void API::Open_Socket(const char Web_Name[], const char SSL_CA_PEM[], NetworkInterface* network){
 
 
@@ -56,17 +57,35 @@ void API::Open_Socket(const char Web_Name[], const char SSL_CA_PEM[], NetworkInt
 }
 
 
-void API::Send_Request(const char http_request[]){
+void API::Send_Request(const std::string& url) {
+    // Parse the URL to extract the path
+    size_t host_pos = url.find("://");
+    size_t path_pos = url.find("/", (host_pos != std::string::npos) ? host_pos + 3 : 0);
     
-    nsapi_size_t total_request_length = strlen(http_request);
+    std::string path;
+    if (path_pos != std::string::npos) {
+        path = url.substr(path_pos);
+    } else {
+        path = "/"; // Default path if none is specified
+    }
+    
+    // Format a proper HTTP request
+    std::string http_request = 
+        "GET " + path + " HTTP/1.1\r\n"
+        "Host: api.ipgeolocation.io\r\n"
+        "Connection: close\r\n"
+        "User-Agent: MbedClient/1.0\r\n"
+        "\r\n";
+    
+    nsapi_size_t total_request_length = http_request.length();
     nsapi_size_t offset = 0;
     nsapi_size_or_error_t sent_bytes = 0;
-
-    printf("\nSending message:\n%s", http_request);
-
+    
+    printf("\nSending message:\n%s", http_request.c_str());
+    
     // LOOP: UNTIL ENTIRE REQUEST IS SENT
     while (offset < total_request_length) {
-        sent_bytes = socket.send(http_request + offset, total_request_length - offset);
+        sent_bytes = socket.send(http_request.c_str() + offset, total_request_length - offset);
         if (sent_bytes < 0) {
             printf("Failed to send HTTP request: %d\n", sent_bytes);
             break;
@@ -74,6 +93,7 @@ void API::Send_Request(const char http_request[]){
         printf("Sent %d bytes\n", sent_bytes);
         offset += sent_bytes;
     }
+    
     if (offset == total_request_length) {
         printf("Complete message sent\n");
     }

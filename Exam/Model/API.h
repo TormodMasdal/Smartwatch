@@ -10,7 +10,7 @@ class API{
 public:
     TLSSocket socket;
     void Open_Socket(const char Web_Name[], const char SSL_CA_PEM[], NetworkInterface* network);
-    void Send_Request(const char http_request[]);
+    void Send_Request(const std::string& url);
     void read_Request();    
 };
 

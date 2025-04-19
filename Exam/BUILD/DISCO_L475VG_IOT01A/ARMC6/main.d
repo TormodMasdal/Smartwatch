@@ -323,4 +323,5 @@ BUILD\DISCO_L475VG_IOT01A\ARMC6\main.o: main.cpp \
   mbed-os\platform\include\platform\Stream.h \
   mbed-os\platform\include\platform\FileLike.h \
   mbed-os\connectivity\netsocket\include\netsocket\NetworkInterface.h \
-  Model\Network_Connect.h Model\API.h Model\Network_Connect.h
+  Model\Network_Connect.h Model\API.h Model\Network_Connect.h \
+  certificates\cerificate.h
