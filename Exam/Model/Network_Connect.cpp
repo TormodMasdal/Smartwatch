@@ -4,6 +4,7 @@
 #include <string>
 #include <cstring>
 
+//Function for connecting to internett
 NetworkInterface* Network_Connect::Connect(){
     
     //Connects to the internett, added print statements for debugging
@@ -45,62 +46,17 @@ NetworkInterface* Network_Connect::Connect(){
     return network;
 }
 
-
-//Works, get external ip from ipify
-std::string Network_Connect::FetchPublicIP() 
+//Function for testing internett connection
+void Test_Internet_Connection(Network_Connect* network_manager, NetworkInterface* network)
 {
-     TCPSocket socket;
-    NetworkInterface* network = NetworkInterface::get_default_instance();
-    if (!network) {
-        printf("Network not initialized!\n");
-        return "";
-    }
-
-    // Resolve the API server's address (DNS lookup)
-    SocketAddress server;
-    if (network->gethostbyname("api.ipify.org", &server) != NSAPI_ERROR_OK) {
-        printf("DNS resolution failed\n");
-        return "";
-    }
-    server.set_port(80); // HTTP port
-
-    // Open and connect the socket
-    if (socket.open(network) != NSAPI_ERROR_OK || 
-        socket.connect(server) != NSAPI_ERROR_OK) {
-        printf("Socket error\n");
-        return "";
-    }
-
-    // Send HTTP GET request
-    const char* request = "GET / HTTP/1.1\r\nHost: api.ipify.org\r\nConnection: close\r\n\r\n";
-    if (socket.send(request, strlen(request)) < 0) {
-        printf("Failed to send request\n");
-        socket.close();
-        return "";
-    }
-
-    // Read the full response (including headers if any)
-    std::string response;
-    char buffer[128] = {0};
-    while (true) {
-        int received = socket.recv(buffer, sizeof(buffer) - 1);
-        if (received <= 0) break; // Connection closed or error
-        buffer[received] = '\0';
-        response += buffer;
-    }
-    socket.close();
-
-    // The IP is the last part of the response (trim whitespace and headers)
-    size_t ip_start = response.find_last_not_of(" \t\n\r");
-    if (ip_start != std::string::npos) {
-        response.resize(ip_start + 1);
-    }
-
-    // If there are HTTP headers, skip them (look for \r\n\r\n)
-    size_t body_pos = response.find("\r\n\r\n");
-    if (body_pos != std::string::npos) {
-        return response.substr(body_pos + 4); // Return only the body (IP)
-    }
-
-    return response; // If no headers, return as-is
+    printf("Testing Internett....\n");
+    if (network->get_connection_status() != NSAPI_STATUS_GLOBAL_UP) 
+        {
+        printf("Network disconnected! Reconnecting...\n");
+        network = network_manager->Connect();
+        }
+    else 
+        {
+        printf("Works!\n");
+        }
 }

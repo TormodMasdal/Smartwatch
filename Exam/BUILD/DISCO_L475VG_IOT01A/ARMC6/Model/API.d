@@ -323,4 +323,5 @@ BUILD\DISCO_L475VG_IOT01A\ARMC6\Model\API.o: Model\API.cpp \
   mbed-os\platform\include\platform\ScopedRamExecutionLock.h \
   mbed-os\platform\include\platform\mbed_stats.h \
   mbed-os\platform\include\platform\Stream.h \
-  mbed-os\platform\include\platform\FileLike.h
+  mbed-os\platform\include\platform\FileLike.h Model\Parse_API.h \
+  json.hpp

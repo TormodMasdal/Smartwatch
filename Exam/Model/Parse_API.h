@@ -1,7 +1,7 @@
 #ifndef PARSE_API_H
 #define PARSE_API_H
-
 #include <iostream>
+#include "json.hpp"
 
 // Parsering av all data fra API
 class Parse_API
@@ -17,3 +17,10 @@ class Parse_API
 };
 
 #endif
+
+//Function For Parsing the external IP
+std::string Parse_External_IP(std::string response);
+//function for removing http body
+std::string Dechunk_Http_Body(const std::string& body);
+//function for parsing api fetch
+void Parse_Api_Response(std::string api_response); 
