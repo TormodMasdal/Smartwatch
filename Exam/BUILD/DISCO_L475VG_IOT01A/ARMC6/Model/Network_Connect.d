@@ -323,4 +323,5 @@ BUILD\DISCO_L475VG_IOT01A\ARMC6\Model\Network_Connect.o: \
   mbed-os\platform\include\platform\mbed_stats.h \
   mbed-os\platform\include\platform\Stream.h \
   mbed-os\platform\include\platform\FileLike.h \
-  mbed-os\connectivity\netsocket\include\netsocket\NetworkInterface.h
+  mbed-os\connectivity\netsocket\include\netsocket\NetworkInterface.h \
+  mbed-os\connectivity\netsocket\include\netsocket\TCPSocket.h
