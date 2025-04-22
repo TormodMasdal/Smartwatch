@@ -313,9 +313,9 @@
 #define MBED_CONF_NSAPI_ADD_EVENT_LISTENER_RETURN_CHANGE                        0                                                                                                // set by library:nsapi
 #define MBED_CONF_NSAPI_DEFAULT_MESH_TYPE                                       THREAD                                                                                           // set by library:nsapi
 #define MBED_CONF_NSAPI_DEFAULT_STACK                                           LWIP                                                                                             // set by library:nsapi
-#define MBED_CONF_NSAPI_DEFAULT_WIFI_PASSWORD                                   "ExP3Zuzbmgpu"                                                                                   // set by application[*]
+#define MBED_CONF_NSAPI_DEFAULT_WIFI_PASSWORD                                   "tormod04"                                                                                       // set by application[*]
 #define MBED_CONF_NSAPI_DEFAULT_WIFI_SECURITY                                   WPA_WPA2                                                                                         // set by application[*]
-#define MBED_CONF_NSAPI_DEFAULT_WIFI_SSID                                       "Telia-2G-F40921"                                                                                // set by application[*]
+#define MBED_CONF_NSAPI_DEFAULT_WIFI_SSID                                       "Tormod"                                                                                         // set by application[*]
 #define MBED_CONF_NSAPI_DNS_ADDRESSES_LIMIT                                     10                                                                                               // set by library:nsapi
 #define MBED_CONF_NSAPI_DNS_CACHE_SIZE                                          3                                                                                                // set by library:nsapi
 #define MBED_CONF_NSAPI_DNS_RESPONSE_WAIT_TIME                                  10000                                                                                            // set by library:nsapi

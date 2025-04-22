@@ -24,7 +24,7 @@ public:
 #endif
 
 //Function for fetching the external IP
-std::string Api_Fetch_External_IP(API& Api, NetworkInterface * network, const char root_ca_cert[]);
+std::string Api_Fetch_External_IP(NetworkInterface * network, const char root_ca_cert[]);
 
 //Function for a general API fetch
-std::string Api_Fetch(API& Api, std::string hostname, std::string url, const char root_ca_cert[], NetworkInterface* network);
+std::string Api_Fetch(std::string hostname, std::string url, const char root_ca_cert[], NetworkInterface* network);

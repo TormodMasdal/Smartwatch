@@ -1,4 +1,6 @@
 #include "Parse_API.h"
+#include "API.h"
+#include <string>
 
 //Function For Parsing the external IP
 using json = nlohmann::json;
@@ -47,8 +49,9 @@ std::string Dechunk_Http_Body(const std::string& body) {
 }
 
 //function for parsing api response with json
-void Parse_Api_Response(std::string api_response) 
+void Parse_API::Parse_Api_Response(std::string api_response) 
 {
+    
     //Separate headers and body
     size_t header_end = api_response.find("\r\n\r\n");
     if (header_end == std::string::npos) 
@@ -73,17 +76,47 @@ void Parse_Api_Response(std::string api_response)
         return;
     }
 
+    // Prints entire JSON
     //printf("Parsed JSON:\n%s\n", parsed.dump(2).c_str());
-    //country
-    std::string country = parsed.value("country_name", "Unknown country");
-    std::cout << "Country: " << country << std::endl;
 
-    //city
-    std::string city = parsed.value("city", "Uknown City");
-    std::cout<< "City: " << city << "\n";
-
-    //datetime
-    std::string datetime = parsed["time_zone"].value("current_time", "Unknown time");
-    std::cout << "Current time: " << datetime << "\n";
-
+    JSON = parsed.dump(2).c_str();
 }
+
+// Parse unix epoch time
+std::string Parse_API::Epoch_Parse(){
+    json parsed = json::parse(JSON);
+
+    // Search for current_time_unix in object time_zone
+    double unix = parsed["time_zone"].value("current_time_unix", double());
+
+    //Convertes double to string, makes the entire epoch time readable
+    std::string Epoch = std::to_string(unix);
+    std::cout << "Unix epoch time: " << Epoch << std::endl;
+    return Epoch;
+}
+
+// Parse longitude
+std::string Parse_API::Longitude_Parse(){
+    json parsed = json::parse(JSON);
+    std::string longitude = parsed.value("longitude", "Unknown longitude");
+    std::cout << "Longitude: " << longitude << std::endl;
+    return longitude;
+}
+
+// Parse latitude
+std::string Parse_API::Latitude_Parse(){
+    json parsed = json::parse(JSON);
+    std::string latitude = parsed.value("latitude", "Unknown latitude");
+    std::cout << "Latitude: " << latitude << std::endl;
+    return latitude;
+}
+
+// Parse city
+std::string Parse_API::City_Parse(){
+    json parsed = json::parse(JSON);
+    std::string city = parsed.value("city", "Unknown city");
+    std::cout << "City: " << city << std::endl;
+    return city;
+}
+
+

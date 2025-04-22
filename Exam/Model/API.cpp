@@ -172,8 +172,9 @@ void API::Close_Socket()
 }
 
 //FUnction for fetching your external IP
-std::string Api_Fetch_External_IP(API& Api, NetworkInterface * network, const char root_ca_cert[]) 
-{        
+std::string Api_Fetch_External_IP(NetworkInterface * network, const char root_ca_cert[]) 
+{  
+    API Api;      
     //Fetches External IP
     //variables for host and url
     std::string Ipify = "api.ipify.org";
@@ -194,8 +195,9 @@ std::string Api_Fetch_External_IP(API& Api, NetworkInterface * network, const ch
 }
     
 //Function for a general API fetch
-std::string Api_Fetch(API& Api, std::string hostname, std::string url, const char root_ca_cert[], NetworkInterface* network)
+std::string Api_Fetch(std::string hostname, std::string url, const char root_ca_cert[], NetworkInterface* network)
     {
+    API Api;
     //Sleeps a little between fetches
     ThisThread::sleep_for(500);
     //Opens api socket (ip geolocation)
@@ -205,7 +207,7 @@ std::string Api_Fetch(API& Api, std::string hostname, std::string url, const cha
     //Reads Request and stores in string
     std::string Read_Api = Api.Read_Request();
     //Closes the socket and sleeps
-    Api.Close_Socket();
+    //Api.Close_Socket();
     ThisThread::sleep_for(1000ms);
     return Read_Api;
     }

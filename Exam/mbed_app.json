@@ -7,8 +7,8 @@
             "platform.minimal-printf-set-floating-point-max-decimals": 6,
             "platform.minimal-printf-enable-64-bit": false,
             "nsapi.default-wifi-security": "WPA_WPA2",
-            "nsapi.default-wifi-ssid": "\"Telia-2G-F40921\"",
-            "nsapi.default-wifi-password": "\"ExP3Zuzbmgpu\"",
+            "nsapi.default-wifi-ssid": "\"Tormod\"",
+            "nsapi.default-wifi-password": "\"tormod04\"",
             "rtos.main-thread-stack-size": 16000
         },
         "DISCO_L475VG_IOT01A": {
